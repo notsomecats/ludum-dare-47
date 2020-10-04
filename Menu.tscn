@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/EpilepsySansBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/home-night.png" type="Texture" id=2]
+[ext_resource path="res://assets/george.png" type="Texture" id=3]
+[ext_resource path="res://Menu.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_color = Color( 0.858824, 0.882353, 0.713726, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_color = Color( 0.858824, 0.882353, 0.713726, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+outline_color = Color( 0.858824, 0.882353, 0.713726, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Menu" type="Node2D" groups=[
+"map",
+]]
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.145098, 0.145098, 0.278431, 0.635294 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+margin_left = 36.0218
+margin_top = 46.6164
+margin_right = 689.022
+margin_bottom = 151.616
+custom_fonts/font = SubResource( 1 )
+text = "you did your best,
+                      didn't you?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelQuit" type="Label" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = 115.0
+margin_right = 167.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 2 )
+text = "[Esc to Quit]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelQuit2" type="Label" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 421.304
+margin_top = -135.888
+margin_right = 556.304
+margin_bottom = -109.888
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.403922, 0.576471, 0.639216, 1 )
+text = "~No Sound Edition~"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelAuthor" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -103.5
+margin_top = 184.0
+margin_right = 103.5
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 2 )
+text = "by @notsomecats"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelStart" type="Label" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = 51.0
+margin_right = 214.0
+margin_bottom = 77.0
+custom_fonts/font = SubResource( 2 )
+text = "[Space to Start]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_left = -149.511
+margin_top = -256.602
+margin_right = 976.489
+margin_bottom = 869.398
+texture = ExtResource( 3 )
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 468.822, 453.021 )
+scale = Vector2( 3.20926, 3.20926 )
+frames = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TimerCooldown" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="TimerStart" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="TimerCooldown" to="." method="_on_TimerCooldown_timeout"]
+[connection signal="timeout" from="TimerStart" to="." method="_on_TimerStart_timeout"]

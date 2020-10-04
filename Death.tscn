@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Death.gd" type="Script" id=2]
+[ext_resource path="res://assets/EpilepsySansBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/ui/font.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+outline_color = Color( 0.858824, 0.882353, 0.713726, 0.517647 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+outline_color = Color( 0.858824, 0.882353, 0.713726, 0.121569 )
+font_data = ExtResource( 3 )
+
+[node name="Death" type="Node2D" groups=[
+"map",
+]]
+script = ExtResource( 2 )
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Canvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.176471, 0.203922, 0.356863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelMessage" type="Label" parent="Canvas"]
+anchor_right = 1.0
+margin_top = 392.0
+margin_bottom = 455.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.403922, 0.576471, 0.639216, 1 )
+text = "You tried your best, right?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Canvas"]
+anchor_right = 1.0
+margin_top = 16.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 1 )
+text = "You have ended."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelContinue" type="Label" parent="Canvas"]
+anchor_right = 1.0
+margin_top = 504.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.403922, 0.576471, 0.639216, 1 )
+text = "[Press Space to continue]"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelScore" type="Label" parent="Canvas"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -134.0
+margin_bottom = -108.0
+custom_fonts/font = ExtResource( 4 )
+text = "Your Score: 0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 303.018, 352.38 )
+
+[node name="TimerCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="TimerContinue" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="TimerCooldown" to="." method="_on_TimerCooldown_timeout"]
+[connection signal="timeout" from="TimerContinue" to="." method="_on_TimerContinue_timeout"]

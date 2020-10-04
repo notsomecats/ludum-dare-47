@@ -1,0 +1,193 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Interactable.gd" type="Script" id=1]
+[ext_resource path="res://assets/not discord.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/email.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.764706, 0.784314, 0.607843, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.145098, 0.145098, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.764706, 0.784314, 0.607843, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.145098, 0.145098, 0.278431, 1 )
+
+[node name="Interactable" type="Area2D" groups=[
+"interactable",
+]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="TimerCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerBed" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PCHome" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PCHome"]
+margin_right = 600.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PCHome"]
+margin_left = 219.202
+margin_top = 563.575
+margin_right = 375.202
+margin_bottom = 589.575
+custom_fonts/font = ExtResource( 3 )
+text = "[Esc to Leave]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Messages" type="RichTextLabel" parent="CanvasLayer/PCHome"]
+margin_left = 181.0
+margin_top = 79.0
+margin_right = 544.0
+margin_bottom = 407.0
+bbcode_enabled = true
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="LineEdit" parent="CanvasLayer/PCHome"]
+margin_left = 180.0
+margin_top = 412.0
+margin_right = 548.0
+margin_bottom = 447.0
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+
+[node name="Time" type="Label" parent="CanvasLayer/PCHome"]
+margin_left = 511.721
+margin_top = 562.575
+margin_right = 572.721
+margin_bottom = 576.575
+text = "00:00 AM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PCWork" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PCWork"]
+margin_right = 600.0
+margin_bottom = 600.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PCWork"]
+margin_left = 219.202
+margin_top = 563.575
+margin_right = 375.202
+margin_bottom = 589.575
+custom_fonts/font = ExtResource( 3 )
+text = "[Esc to Leave]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelName" type="Label" parent="CanvasLayer/PCWork"]
+margin_left = 243.0
+margin_top = 193.0
+margin_right = 369.0
+margin_bottom = 224.0
+custom_colors/font_color = Color( 0.145098, 0.145098, 0.278431, 1 )
+text = "Name Here
+Title here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Messages" type="RichTextLabel" parent="CanvasLayer/PCWork"]
+margin_left = 214.0
+margin_top = 257.0
+margin_right = 538.0
+margin_bottom = 448.0
+custom_colors/default_color = Color( 0.145098, 0.145098, 0.278431, 1 )
+bbcode_enabled = true
+text = "Message!"
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="LineEdit" parent="CanvasLayer/PCWork"]
+margin_left = 195.0
+margin_top = 478.0
+margin_right = 563.0
+margin_bottom = 539.0
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_colors/font_color = Color( 0.145098, 0.145098, 0.278431, 1 )
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="CanvasLayer/PCWork"]
+margin_left = 511.721
+margin_top = 562.575
+margin_right = 572.721
+margin_bottom = 576.575
+text = "00:00 AM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerPCHomeMessages" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerUpdateTime" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="TimerPCActCooldown" type="Timer" parent="."]
+
+[node name="TimerPCEmail" type="Timer" parent="."]
+one_shot = true
+[connection signal="area_entered" from="." to="." method="_on_Interactable_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Interactable_area_exited"]
+[connection signal="timeout" from="TimerCooldown" to="." method="_on_TimerCooldown_timeout"]
+[connection signal="timeout" from="TimerBed" to="." method="_on_TimerBed_timeout"]
+[connection signal="timeout" from="TimerPCHomeMessages" to="." method="_on_TimerPCHomeMessages_timeout"]
+[connection signal="timeout" from="TimerUpdateTime" to="." method="_on_TimerUpdateTime_timeout"]
+[connection signal="timeout" from="TimerPCActCooldown" to="." method="_on_TimerPCActCooldown_timeout"]
+[connection signal="timeout" from="TimerPCEmail" to="." method="_on_TimerPCEmail_timeout"]

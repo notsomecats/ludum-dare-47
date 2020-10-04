@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Drive.gd" type="Script" id=1]
+[ext_resource path="res://assets/drive-day.png" type="Texture" id=2]
+[ext_resource path="res://assets/drive-night.png" type="Texture" id=3]
+[ext_resource path="res://assets/car-night.png" type="Texture" id=4]
+[ext_resource path="res://Teleporter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/car-day.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "day",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "night",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 73.0525, 196.304 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "day",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "night",
+"speed": 5.0
+} ]
+
+[node name="Drive" type="Node2D" groups=[
+"map",
+]]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 300, 300 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+animation = "night"
+
+[node name="Edges" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Edges"]
+position = Vector2( 665.501, 334.087 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Edges"]
+position = Vector2( -67.7084, 344.778 )
+shape = SubResource( 4 )
+
+[node name="Teleporter" parent="." instance=ExtResource( 5 )]
+position = Vector2( 124.794, 390.936 )
+destination = "Office"
+
+[node name="Spawn" type="Node2D" parent="." groups=[
+"spawn",
+]]
+position = Vector2( 295.029, 393.629 )
+
+[node name="TimerLog" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="TimerDrive" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Car" type="AnimatedSprite" parent="."]
+position = Vector2( 300, 300 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 6 )
+animation = "day"
+[connection signal="timeout" from="TimerLog" to="." method="_on_TimerLog_timeout"]
+[connection signal="timeout" from="TimerDrive" to="." method="_on_TimerDrive_timeout"]
